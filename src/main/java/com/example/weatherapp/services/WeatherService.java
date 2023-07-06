@@ -2,7 +2,7 @@ package com.example.weatherapp.services;
 
 import com.example.weatherapp.APIs.WeatherApi;
 import com.example.weatherapp.entities.WeatherData;
-import com.example.weatherapp.DTOs.WeatherApiResponseDTO;
+import com.example.weatherapp.DTOs.ResponseDTO;
 import com.example.weatherapp.entities.mapper.WeatherDataMapper;
 import com.example.weatherapp.repositories.WeatherDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +21,13 @@ public class WeatherService {
   }
 
   public WeatherData getWeatherByCity(String cityName) throws Exception {
-    WeatherApiResponseDTO apiResponse = weatherApi.getWeatherByCity(cityName);
+    ResponseDTO apiResponse = weatherApi.getWeatherByCity(cityName);
     WeatherData weatherData = WeatherDataMapper.mapFromApiResponse(cityName, apiResponse);
     return weatherDataRepository.save(weatherData);
   }
 
   public WeatherData getWeatherByCoordinates(double latitude, double longitude) throws Exception {
-    WeatherApiResponseDTO apiResponse = weatherApi.getWeatherByCoordinates(latitude, longitude);
+    ResponseDTO apiResponse = weatherApi.getWeatherByCoordinates(latitude, longitude);
     WeatherData weatherData = WeatherDataMapper.mapFromApiResponse(apiResponse.getName(), apiResponse);
     return weatherDataRepository.save(weatherData);
   }

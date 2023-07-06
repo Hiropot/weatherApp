@@ -28,6 +28,8 @@ public class WeatherData {
   private double tempMax;
   private int pressure;
   private int humidity;
+  private double sea_level;
+  private int grnd_level;
   private int visibility;
   private double windSpeed;
   private int windDeg;

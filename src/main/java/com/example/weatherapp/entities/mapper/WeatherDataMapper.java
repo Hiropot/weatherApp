@@ -1,12 +1,12 @@
 package com.example.weatherapp.entities.mapper;
 
 import com.example.weatherapp.entities.WeatherData;
-import com.example.weatherapp.DTOs.WeatherApiResponseDTO;
+import com.example.weatherapp.DTOs.ResponseDTO;
 import java.time.LocalDateTime;
 
 public class WeatherDataMapper {
 
-  public static WeatherData mapFromApiResponse(String city, WeatherApiResponseDTO response) {
+  public static WeatherData mapFromApiResponse(String city, ResponseDTO response) {
     WeatherData weatherData = new WeatherData();
     weatherData.setCity(city);
     weatherData.setLatitude(response.getCoord().getLat());
@@ -16,6 +16,8 @@ public class WeatherDataMapper {
     weatherData.setWeatherDescription(response.getWeather().get(0).getDescription());
     weatherData.setWeatherIcon(response.getWeather().get(0).getIcon());
     weatherData.setFeelsLike(response.getMain().getFeels_like());
+    weatherData.setSea_level(response.getMain().getSea_level());
+    weatherData.setGrnd_level(response.getMain().getGrnd_level());
     weatherData.setTempMin(response.getMain().getTemp_min());
     weatherData.setTempMax(response.getMain().getTemp_max());
     weatherData.setPressure(response.getMain().getPressure());

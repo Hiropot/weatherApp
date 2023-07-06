@@ -3,6 +3,8 @@ package com.example.weatherapp.controllers;
 import com.example.weatherapp.entities.WeatherData;
 import com.example.weatherapp.services.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +23,14 @@ public class WeatherController {
   }
 
   @GetMapping("/city/{cityName}")
-  public WeatherData getWeatherByCity(@PathVariable String cityName) throws Exception {
-    return weatherService.getWeatherByCity(cityName);
+  public ResponseEntity<?> getWeatherByCity(@PathVariable String cityName) {
+    try {
+      WeatherData weatherData = weatherService.getWeatherByCity(cityName);
+      return ResponseEntity.ok(weatherData);
+    } catch (Exception e) {
+      String errorMessage = "Error retrieving weather data. City not found.";
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
+    }
   }
 
   @GetMapping("/coordinates")

@@ -1,13 +1,12 @@
 package com.example.weatherapp.DTOs;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class WeatherApiResponseDTO {
+public class ResponseDTO {
 
   private Coord coord;
   private List<Weather> weather;
@@ -22,14 +21,12 @@ public class WeatherApiResponseDTO {
   private String name;
   private int cod;
 
-  // Constructors, getters, and setters
+
   @Data
   public static class Coord {
 
     private double lon;
     private double lat;
-
-    // Constructors, getters, and setters
   }
 
   @Data
@@ -39,8 +36,6 @@ public class WeatherApiResponseDTO {
     private String main;
     private String description;
     private String icon;
-
-    // Constructors, getters, and setters
   }
 
   @Data
@@ -52,28 +47,8 @@ public class WeatherApiResponseDTO {
     private double temp_max;
     private int pressure;
     private int humidity;
-
-    @JsonProperty("temp")
-    private void setTempCelsius(double temp) {
-      this.temp = temp;
-    }
-
-    @JsonProperty("feels_like")
-    private void setFeelsLikeCelsius(double feels_like) {
-      this.feels_like = feels_like;
-    }
-
-    @JsonProperty("temp_min")
-    private void setTempMinCelsius(double temp_min) {
-      this.temp_min = temp_min;
-    }
-
-    @JsonProperty("temp_max")
-    private void setTempMaxCelsius(double temp_max) {
-      this.temp_max = temp_max;
-    }
-
-    // Constructors, getters, and setters
+    private double sea_level;
+    private int grnd_level;
   }
 
   @Data
@@ -82,16 +57,12 @@ public class WeatherApiResponseDTO {
     private double speed;
     private double gust;
     private int deg;
-
-    // Constructors, getters, and setters
   }
 
   @Data
   public static class Clouds {
 
     private int all;
-
-    // Constructors, getters, and setters
   }
 
   @Data
@@ -102,7 +73,5 @@ public class WeatherApiResponseDTO {
     private String country;
     private long sunrise;
     private long sunset;
-
-    // Constructors, getters, and setters
   }
 }
